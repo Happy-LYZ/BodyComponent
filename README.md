@@ -1,2 +1,0 @@
-# BodyComponent
-Created with CodeSandbox
