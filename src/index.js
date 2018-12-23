@@ -1,35 +1,45 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import MaskEle from "./com.js";
-import "./styles.css";
+import Modal from "./components/Modal";
+import "./index.less";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.props = props;
     this.state = {
-      visiable: false // 新增任务弹窗中，搜索树，是否包含下级
+      visiable: false // 是否显示模态框
     };
   }
 
-  click() {
-    debugger;
+  /**
+   * @method 显示模态框
+   */
+  showModal() {
     this.setState({
-      visiable: this.state.visiable ? false : true
+      visiable: true
     });
   }
+  
+  /**
+   * @method 隐藏模态框
+   */
+  hideModal() {
+    this.setState({
+      visiable: false
+    });
+  }
+
   render() {
     return (
       <div className="App">
-        <h1>Hello CodeSandbox</h1>
-        <h2 onClick={this.click.bind(this)}>
-          Start editing to see some magic happen!
-        </h2>
-        <MaskEle
+        <h2 onClick={this.showModal.bind(this)}> 显示模态框 </h2>
+        <Modal
           visible={this.state.visiable}
           title="Title"
-          content="test"
-          onOk={this.click.bind(this)}
+          content="我是挂载于body下的全局模态框"
+          onOk={this.hideModal.bind(this)}
+          onCancel={this.hideModal.bind(this)}
         />
       </div>
     );
